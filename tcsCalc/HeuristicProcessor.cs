@@ -57,7 +57,8 @@ namespace tcsCalc
                 (amount - _minimumDeposit) >= _minimumDeposit*needExtraDeposits &&
                 // after another round we will have enough funds for all extra deposits
                 (amount) >= _minimumDeposit &&
-                (probingPeriod) < wholePeriod // have enough deposit periods available for another _minDepositTermKey
+                // have enough deposit periods available for another _minDepositTermKey
+                (new DateDiff(currentDate, openDate.AddMonths(wholePeriod)).Months) <= probingPeriod
                 )
             {
                 if (!_availableRates.ContainsKey(probingPeriod))
