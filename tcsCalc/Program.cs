@@ -33,7 +33,7 @@ namespace tcsCalc
 
         static void Main(string[] args)
         {
-            double principal = 45000;
+            double principal = 0;
             int maxPeriod = 12;
             double depositPrecision = 15000;
             bool showHelp = false;
@@ -42,10 +42,10 @@ namespace tcsCalc
             var p = new OptionSet()
             {
                 { "p|principal=", "the starting principal (e.g. 100000)", v => principal = double.Parse(v) },
-                { "m|months=", "the number of month to evaluate deposit possibilities", (int v) => maxPeriod = v },
-                { "r|precision=", "how precise to search for deposit combinations (e.g. 30000)", v => depositPrecision = double.Parse(v) },
-                { "d|maxdeposits=", "how many deposits can be opened at the same time", (int v) => _maxDeposits = v },
-                { "b|brute",  "Brute-force strategy instead of heuristics", (v) => bruteForce = v != null },
+                { "m|months=", "the number of month to evaluate deposit possibilities (default 12)", (int v) => maxPeriod = v },
+                { "r|precision=", "how precise to search for deposit combinations (default 15000)", v => depositPrecision = double.Parse(v) },
+                { "d|maxdeposits=", "how many deposits can be opened at the same time (default 6)", (int v) => _maxDeposits = v },
+                { "b|brute",  "Brute-force strategy instead of heuristics (WARNING!!! May require huge resources of both cpu and memory!)", (v) => bruteForce = v != null },
                 { "h|help",  "show this message and exit", (v) => showHelp = v != null },
             };
 
@@ -59,6 +59,11 @@ namespace tcsCalc
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Try `tcsCalc --help' for more information.");
                 return;
+            }
+
+            if (principal == 0)
+            {
+                showHelp = true;
             }
 
             if (showHelp)
