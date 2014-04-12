@@ -29,7 +29,21 @@ namespace tcsCalc
                 _availableRates.Add(term, 9.5);
             }
         }
-
+        private static void InitOptimalRates()
+        {
+            foreach (var term in Enumerable.Range(3, 1))
+            {
+                _availableRates.Add(term, 4);
+            }
+            foreach (var term in Enumerable.Range(6, 1))
+            {
+                _availableRates.Add(term, 6.5);
+            }
+            foreach (var term in Enumerable.Range(12, 1))
+            {
+                _availableRates.Add(term, 9.5);
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -38,14 +52,16 @@ namespace tcsCalc
             double depositPrecision = 15000;
             bool showHelp = false;
             bool bruteForce = false;
+            bool useAllRates = false;
 
             var p = new OptionSet()
             {
                 { "p|principal=", "the starting principal (e.g. 100000)", v => principal = double.Parse(v) },
                 { "m|months=", "the number of month to evaluate deposit possibilities (default 12)", (int v) => maxPeriod = v },
-                { "r|precision=", "how precise to search for deposit combinations (default 15000)", v => depositPrecision = double.Parse(v) },
                 { "d|maxdeposits=", "how many deposits can be opened at the same time (default 6)", (int v) => _maxDeposits = v },
                 { "b|brute",  "Brute-force strategy instead of heuristics (WARNING!!! May require huge resources of both cpu and memory!)", (v) => bruteForce = v != null },
+                { "a|all-rates", "include all possible rate/term combinations, not just optimal (default false (3, 6 and 12 month)", v => useAllRates = v != null },
+                { "r|precision=", "how precise to brute-search for deposit combinations (default 15000)", v => depositPrecision = double.Parse(v) },
                 { "h|help",  "show this message and exit", (v) => showHelp = v != null },
             };
 
@@ -61,7 +77,7 @@ namespace tcsCalc
                 return;
             }
 
-            if (principal == 0)
+            if (principal == 0.00)
             {
                 showHelp = true;
             }
@@ -79,8 +95,14 @@ namespace tcsCalc
                 Environment.NewLine, principal, maxPeriod, bruteForce ? "Brute-force" : "Heuristic"
                 );
 
-
-            InitRates();
+            if(useAllRates)
+            {
+                InitRates();
+            }
+            else
+            {
+                InitOptimalRates();
+            }
 
             var openDate = DateTime.Now.Round(TimeSpan.FromDays(1));
             var finalDate = openDate.AddMonths(maxPeriod);
@@ -120,7 +142,7 @@ namespace tcsCalc
             foreach (var deposit in lot.ClosedDeposits.OrderBy(d => d.ClosesOn))
             {
                 j++;
-                Console.WriteLine("= Deposit {0} open from {1:d} to {4:d} for {2} months @ {3:P} annual", j, deposit.Opened, deposit.MonthTerm, deposit.Rate / 100, deposit.ClosesOn);
+                Console.WriteLine("= Deposit {0} open from {1:d} till {4:d} for {2} months @ {3:P} annual", j, deposit.Opened, deposit.MonthTerm, deposit.Rate / 100, deposit.ClosesOn);
                 foreach (var debit in deposit.Debits.GroupBy(d => d.DateTime)
                     .Select(g => new { DateTime = g.Key, Amount = g.Sum(v => v.Amount) } ).OrderBy(d => d.DateTime))
                 {

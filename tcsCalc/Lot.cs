@@ -25,6 +25,11 @@ namespace tcsCalc
             Deposits.Add(deposit);
         }
 
+        public void AddDeposit(double amount, int monthTerm, double rate, DateTime opened, double flatBonus = 0)
+        {
+            AddDeposit(new Deposit(amount, monthTerm, rate, opened, flatBonus));
+        }
+
         public double WithdrawAvailable(DateTime date)
         {
             double sum = 0.0;

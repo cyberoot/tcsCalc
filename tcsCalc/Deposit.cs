@@ -8,7 +8,7 @@ namespace tcsCalc
     [Serializable]
     class Deposit
     {
-        public static int NO_BONUS_DAYS_TO_CLOSE = 85;
+        public static int NO_BONUS_DAYS_TO_CLOSING = 85;
 
         private IList<Debit> _debits; 
 
@@ -29,7 +29,7 @@ namespace tcsCalc
 
         public void AddAmount(double amount, DateTime date, double flatBonus = 0)
         {
-            _debits.Add(new Debit(this, amount, date, (new DateDiff(date, ClosesOn).Days > NO_BONUS_DAYS_TO_CLOSE) ? amount * (flatBonus / 100) : 0));
+            _debits.Add(new Debit(this, amount, date, (new DateDiff(date, ClosesOn).Days > NO_BONUS_DAYS_TO_CLOSING) ? amount * (flatBonus / 100) : 0));
         }
 
         public double GetAmountOn(DateTime date)

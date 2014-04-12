@@ -89,7 +89,7 @@ namespace tcsCalc
             foreach (var deposit in depositsByRate)
             {
                 var daysToFinalWithdrawal = new DateDiff(currentDate, deposit.ClosesOn).Days;
-                if (daysToFinalWithdrawal > Deposit.NO_BONUS_DAYS_TO_CLOSE)
+                if (daysToFinalWithdrawal > Deposit.NO_BONUS_DAYS_TO_CLOSING)
                 {
                     var theOtherLot = lot.Copy();
                     theOtherLot.Deposits.OrderByDescending(d => d.MonthFlatRate).ToList()
