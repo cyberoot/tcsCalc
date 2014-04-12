@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using tcsCalc.Core.Domain;
+using tcsCalc.Core.Service.Processor;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Service
 {
-    class LotService
+    public class LotService
     {
         private readonly ILotProcessor _lotProcessor;
 

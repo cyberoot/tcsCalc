@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Domain
 {
     [Serializable]
-    class Debit
+    public class Debit
     {
         public double Amount { get; private set; }
         public double BonusAmount { get; private set; }

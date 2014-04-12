@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Util
 {
-    class EnvironmentUtils
+    public class EnvironmentUtils
     {
         public static int GetMaxParallelism()
         {

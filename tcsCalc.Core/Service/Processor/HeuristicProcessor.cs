@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using Itenso.TimePeriod;
+using tcsCalc.Core.Domain;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Service.Processor
 {
-    class HeuristicProcessor : BaseProcessor, ILotProcessor
+    public class HeuristicProcessor : BaseProcessor, ILotProcessor
     {
         protected readonly IDictionary<int, double> _optimalRates;
 

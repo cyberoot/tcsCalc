@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Util
 {
     static class DepositMath
     {

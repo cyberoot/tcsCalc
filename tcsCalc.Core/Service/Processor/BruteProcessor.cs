@@ -3,10 +3,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Itenso.TimePeriod;
+using tcsCalc.Core.Domain;
+using tcsCalc.Core.Util;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Service.Processor
 {
-    class BruteProcessor : BaseProcessor, ILotProcessor
+    public class BruteProcessor : BaseProcessor, ILotProcessor
     {
         public BruteProcessor(double coinPresicion, double minimumDeposit, int maxDeposits, IDictionary<int, double> availableRates, double bonus)
             : base(coinPresicion, minimumDeposit, maxDeposits, availableRates, bonus)

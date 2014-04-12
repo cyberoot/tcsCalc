@@ -3,10 +3,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tcsCalc.Core.Domain;
+using tcsCalc.Core.Util;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Service.Processor
 {
-    abstract class BaseProcessor
+    public abstract class BaseProcessor
     {
         protected readonly double _coinPresicion;
         protected readonly double _minimumDeposit;

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Util
 {
-    static class DateTimeUtils
+    public static class DateTimeUtils
     {
         public static TimeSpan Round(this TimeSpan time, TimeSpan roundingInterval, MidpointRounding roundingType)
         {

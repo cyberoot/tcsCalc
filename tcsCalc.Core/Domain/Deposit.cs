@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Itenso.TimePeriod;
+using tcsCalc.Core.Util;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Domain
 {
     [Serializable]
-    class Deposit
+    public class Deposit
     {
         public static int NO_BONUS_DAYS_TO_CLOSING = 85;
 

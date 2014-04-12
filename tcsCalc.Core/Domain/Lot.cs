@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using tcsCalc.Core.Util;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Domain
 {
     [Serializable]
-    class Lot
+    public class Lot
     {
         private double _value { get; set; }
 

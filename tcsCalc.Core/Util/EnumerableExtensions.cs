@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace tcsCalc
+namespace tcsCalc.Core.Util
 {
     internal static class EnumerableExtension
     {
